@@ -1,4 +1,4 @@
-package ApiRest.Models;
+package com.utn.udeetpfinal.apirest.models;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

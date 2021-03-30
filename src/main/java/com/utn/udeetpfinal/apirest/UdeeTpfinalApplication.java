@@ -1,4 +1,4 @@
-package com.utn.udeetpfinal;
+package com.utn.udeetpfinal.apirest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package ApiRest.Models;
+package com.utn.udeetpfinal.apirest.models;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,8 +8,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 
-public class Tariff {
+public class Client extends User{
 
-    private String type;
-    private float price;
+    private String name;
+
 }

@@ -1,4 +1,4 @@
-package ApiRest.Models;
+package com.utn.udeetpfinal.apirest.models;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,9 +8,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 
-public class Address {
+public class Rate {
 
-    private String city;
-    private String country;
-
+    private String type;
+    private float price;
 }
