@@ -39,7 +39,4 @@ public class RateController {
         rateService.deleteRate(rateId);
     }
 
-
-
-
 }
