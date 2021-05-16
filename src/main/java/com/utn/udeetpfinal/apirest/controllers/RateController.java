@@ -30,7 +30,7 @@ public class RateController {
     }
 
     @PostMapping("/")
-    public void addRate(Rate rate){
+    public void addRate(@RequestBody Rate rate){
         rateService.addRate(rate);
     }
 

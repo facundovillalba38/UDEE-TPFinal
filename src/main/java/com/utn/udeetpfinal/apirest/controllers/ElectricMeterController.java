@@ -31,7 +31,7 @@ public class ElectricMeterController {
     }
 
     @PostMapping("/")
-    public void addElectricMeter(ElectricMeter electricMeter){
+    public void addElectricMeter(@RequestBody ElectricMeter electricMeter){
         electricMeterService.addElectricMeter(electricMeter);
     }
 
