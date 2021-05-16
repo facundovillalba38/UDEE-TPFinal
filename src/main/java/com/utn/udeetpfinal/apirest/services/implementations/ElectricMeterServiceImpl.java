@@ -34,6 +34,15 @@ public class ElectricMeterServiceImpl implements IElectricMeterService {
     }
 
     @Override
+    public void updateElectricMeter(Long electricMeterId, ElectricMeter newElectricMeter) {
+        ElectricMeter electricMeter = this.getElectricMeterById(electricMeterId);
+        electricMeter.setBrand(newElectricMeter.getBrand());
+        electricMeter.setId_serial(newElectricMeter.getId_serial());
+        electricMeter.setModel(newElectricMeter.getModel());
+        this.addElectricMeter(electricMeter);
+    }
+
+    @Override
     public void deleteElectricMeter(Long electricMeterId) {
         electricMeterRepository.deleteById(electricMeterId);
     }

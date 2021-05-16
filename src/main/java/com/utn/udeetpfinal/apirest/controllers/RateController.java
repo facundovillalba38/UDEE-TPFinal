@@ -34,6 +34,11 @@ public class RateController {
         rateService.addRate(rate);
     }
 
+    @PutMapping("/{rateId}")
+    public void updateRate(@PathVariable Long rateId, @RequestBody Rate newRate){
+        rateService.updateRate(rateId, newRate);
+    }
+
     @DeleteMapping("/{rateId}")
     public void deleteRate(@PathVariable Long rateId){
         rateService.deleteRate(rateId);

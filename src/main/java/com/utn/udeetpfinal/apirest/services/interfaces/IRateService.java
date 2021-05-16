@@ -7,11 +7,13 @@ import java.util.List;
 
 public interface IRateService {
 
-    public void addRate(@RequestBody Rate rate);
+    public void addRate(Rate rate);
 
     public List<Rate> getRates();
 
     public Rate getRateById(Long rateId);
+
+    public void updateRate(Long rateId, Rate newRate);
 
     public void deleteRate(Long rateId);
 }

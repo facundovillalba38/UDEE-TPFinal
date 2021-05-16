@@ -35,6 +35,11 @@ public class ElectricMeterController {
         electricMeterService.addElectricMeter(electricMeter);
     }
 
+    @PutMapping("/{electricMeterId}")
+    public void updateElectricMeter(@PathVariable Long electricMeterId, @RequestBody ElectricMeter newElectricMeter){
+        electricMeterService.updateElectricMeter(electricMeterId, newElectricMeter);
+    }
+
     @DeleteMapping("/{electricMeterId}")
     public void deleteElectricMeter(@PathVariable Long electricMeterId){
         electricMeterService.deleteElectricMeter(electricMeterId);

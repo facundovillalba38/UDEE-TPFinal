@@ -31,6 +31,13 @@ public class RateServiceImpl implements IRateService {
         return IRateRepository.findById(rateId).orElse(null);
     }
 
+    public void updateRate(Long rateId, Rate newRate) {
+        Rate rate = this.getRateById(rateId);
+        rate.setPrice(newRate.getPrice());
+        rate.setType(newRate.getType());
+        this.addRate(rate);
+    }
+
     public void deleteRate(Long rateId) {
         IRateRepository.deleteById(rateId);
     }

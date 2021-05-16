@@ -8,11 +8,13 @@ import java.util.List;
 
 public interface IElectricMeterService {
 
-    public void addElectricMeter(@RequestBody ElectricMeter electricMeter);
+    public void addElectricMeter(ElectricMeter electricMeter);
 
     public List<ElectricMeter> getAll();
 
     public ElectricMeter getElectricMeterById(Long electricMeterId);
+
+    public void updateElectricMeter(Long electricMeterId, ElectricMeter newElectricMeter);
 
     public void deleteElectricMeter(Long electricMeterId);
 }
