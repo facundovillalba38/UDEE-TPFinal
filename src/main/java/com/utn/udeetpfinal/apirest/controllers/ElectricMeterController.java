@@ -1,8 +1,8 @@
 package com.utn.udeetpfinal.apirest.controllers;
 
 
+import com.utn.udeetpfinal.apirest.exceptions.invalid.ElectricMeterInvalidException;
 import com.utn.udeetpfinal.apirest.models.ElectricMeter;
-import com.utn.udeetpfinal.apirest.models.Rate;
 import com.utn.udeetpfinal.apirest.services.implementations.ElectricMeterServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,7 +24,7 @@ public class ElectricMeterController {
     }
 
     @GetMapping("/{electricMeterId}")
-    public ElectricMeter getElectricMeterById(@PathVariable Long electricMeterId){
+    public ElectricMeter getElectricMeterById(@PathVariable Long electricMeterId) throws ElectricMeterInvalidException{
         return electricMeterService.getElectricMeterById(electricMeterId);
     }
 
@@ -32,12 +32,10 @@ public class ElectricMeterController {
     public Page<ElectricMeter> getAllElectricMeters(
             @RequestParam(defaultValue = "0") Integer page,
             @RequestParam(defaultValue = "5") Integer size,
-            @RequestParam(defaultValue = "id") String sortField1,
-            @RequestParam(defaultValue = "id_serial") String sortField2
-    ){
+            @RequestParam(defaultValue = "id") String sortField1
+    ) throws ElectricMeterInvalidException {
         List<Sort.Order> orders = new ArrayList<>();
         orders.add(new Sort.Order(Sort.Direction.ASC, sortField1));
-        orders.add(new Sort.Order(Sort.Direction.ASC, sortField2));
 
         return electricMeterService.getAll(page, size, orders);
     }
@@ -48,12 +46,12 @@ public class ElectricMeterController {
     }
 
     @PutMapping("/{electricMeterId}")
-    public void updateElectricMeter(@PathVariable Long electricMeterId, @RequestBody ElectricMeter newElectricMeter){
+    public void updateElectricMeter(@PathVariable Long electricMeterId, @RequestBody ElectricMeter newElectricMeter) throws ElectricMeterInvalidException{
         electricMeterService.updateElectricMeter(electricMeterId, newElectricMeter);
     }
 
     @DeleteMapping("/{electricMeterId}")
-    public void deleteElectricMeter(@PathVariable Long electricMeterId){
+    public void deleteElectricMeter(@PathVariable Long electricMeterId) throws ElectricMeterInvalidException{
         electricMeterService.deleteElectricMeter(electricMeterId);
     }
 
