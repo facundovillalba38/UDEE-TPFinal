@@ -4,6 +4,11 @@ import com.utn.udeetpfinal.apirest.models.ElectricMeter;
 import com.utn.udeetpfinal.apirest.repositories.IElectricMeterRepository;
 import com.utn.udeetpfinal.apirest.services.interfaces.IElectricMeterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,8 +29,9 @@ public class ElectricMeterServiceImpl implements IElectricMeterService {
     }
 
     @Override
-    public List<ElectricMeter> getAll() {
-        return electricMeterRepository.findAll();
+    public Page<ElectricMeter> getAll(Integer page, Integer size, List<Order>orders) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
+        return electricMeterRepository.findAll(pageable);
     }
 
     @Override

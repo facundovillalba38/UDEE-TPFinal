@@ -16,6 +16,6 @@ public class Measuring {
     private int electricMeterSerial;
     private Date date;
     private double totalMeasurement;
-    private int idTariff;
+    private Rate rate;
 
 }

@@ -5,8 +5,11 @@ import com.utn.udeetpfinal.apirest.models.ElectricMeter;
 import com.utn.udeetpfinal.apirest.models.Rate;
 import com.utn.udeetpfinal.apirest.services.implementations.ElectricMeterServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -26,8 +29,17 @@ public class ElectricMeterController {
     }
 
     @GetMapping("/")
-    public List<ElectricMeter> getAllElectricMeters(){
-        return electricMeterService.getAll();
+    public Page<ElectricMeter> getAllElectricMeters(
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "5") Integer size,
+            @RequestParam(defaultValue = "id") String sortField1,
+            @RequestParam(defaultValue = "id_serial") String sortField2
+    ){
+        List<Sort.Order> orders = new ArrayList<>();
+        orders.add(new Sort.Order(Sort.Direction.ASC, sortField1));
+        orders.add(new Sort.Order(Sort.Direction.ASC, sortField2));
+
+        return electricMeterService.getAll(page, size, orders);
     }
 
     @PostMapping("/")

@@ -4,6 +4,11 @@ import com.utn.udeetpfinal.apirest.models.Rate;
 import com.utn.udeetpfinal.apirest.repositories.IRateRepository;
 import com.utn.udeetpfinal.apirest.services.interfaces.IRateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -23,8 +28,10 @@ public class RateServiceImpl implements IRateService {
         IRateRepository.save(rate);
     }
 
-    public List<Rate> getRates(){
-        return IRateRepository.findAll();
+    public Page<Rate> getRates(Integer page, Integer size, List<Order> orders){
+        Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
+
+        return IRateRepository.findAll(pageable);
     }
 
     public Rate getRateById(Long rateId){

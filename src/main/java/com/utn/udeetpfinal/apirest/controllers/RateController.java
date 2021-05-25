@@ -4,8 +4,12 @@ package com.utn.udeetpfinal.apirest.controllers;
 import com.utn.udeetpfinal.apirest.models.Rate;
 import com.utn.udeetpfinal.apirest.services.implementations.RateServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort.Order;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -25,8 +29,17 @@ public class RateController {
     }
 
     @GetMapping("/")
-    public List<Rate> getAllRates(){
-        return rateService.getRates();
+    public Page<Rate> getAllRates(
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "5") Integer size,
+            @RequestParam(defaultValue = "id") String sortField1,
+            @RequestParam(defaultValue = "type") String sortField2
+    ){
+        List<Order> orders = new ArrayList<>();
+        orders.add(new Order(Direction.ASC, sortField1));
+        orders.add(new Order(Direction.ASC, sortField2));
+
+        return rateService.getRates(page, size, orders);
     }
 
     @PostMapping("/")
